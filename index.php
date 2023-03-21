@@ -18,17 +18,22 @@
     <!-- Tab panes -->
         <div class="tab-content">
 
-            <div class="tab-pane active" id="view" role="tabpanel"
-                aria-labelledby="view-tab"> 
-                <?php
-                    require_once("functions.php")
-                ?>
-                <div class="bs5-grid-row">
-                    <?php
-                        get_all_data();
-                    ?>
-                    </div>
-            </div>
+            
+
+            <div class="tab-pane active" id="view" role="tabpanel" aria-labelledby="view-tab">
+        <?php
+            require_once("functions.php");
+            $movies = get_all_movies();
+            foreach ($movies as $movie) {
+            echo '<a href="movie.php?id=' . $movie["id"] . '">';
+            echo '<div class="movie-block">';
+            echo '<h2>' . $movie["title"] . '</h2>';
+            echo '<p>' . $movie["genres"] . '</p>';
+            echo '</div>';
+            echo '</a>';
+            }
+        ?>
+    </div>
             
             <div class="tab-pane" id="insert" role="tabpanel"
                 aria-labelledby="insert-tab"> 
