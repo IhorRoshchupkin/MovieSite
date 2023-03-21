@@ -18,6 +18,29 @@
     <!-- Tab panes -->
         <div class="tab-content">
 
+        <div class="tab-pane" id="search" role="tabpanel"
+                aria-labelledby="search-tab"> 
+                        <form method="GET" action="movies.php">
+                    <input type="text" name="genres" placeholder="Filter by genres" value="<?php echo isset($_GET['genres']) ? $_GET['genres'] : ''; ?>">
+                    <button type="submit">Filter</button>
+                </form>
+                <?php
+                    require_once("functions.php");
+                    $movies = isset($_GET['genres']) ? get_all_movies_by_genres($_GET['genres']) : get_all_movies();
+                    // use get_all_movies_by_genres() if genres is set in the query string
+                    foreach ($movies as $movie) {
+                    echo '<a href="movie.php?id=' . $movie["id"] . '">';
+                    echo '<div class="movie-block">';
+                    echo '<h2>' . $movie["title"] . '</h2>';
+                    echo '<p>' . $movie["genres"] . '</p>';
+                    echo '</div>';
+                    echo '</a>';
+                    }
+                ?>
+                        
+                </div>
+            </div>
+
             
 
             <div class="tab-pane active" id="view" role="tabpanel" aria-labelledby="view-tab">
@@ -34,6 +57,8 @@
             }
         ?>
     </div>
+
+    get_all_movies_by_genres($genres)
             
             <div class="tab-pane" id="insert" role="tabpanel"
                 aria-labelledby="insert-tab"> 

@@ -88,6 +88,30 @@ function get_all_movies() {
     }
 }
 
+function get_all_movies_by_genres($genres) {
+    global $conn;
+    $query = "SELECT * FROM movies WHERE genres LIKE '%$genres%' LIMIT 25";
+    // use LIKE operator to match movies whose genres contain the specified genres
+    $result = mysqli_query($conn, $query);
+    if ($result) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $movie_id = $row['id']; // fix variable name
+            $title = $row['title'];
+            $genres = $row['genres'];
+            $year = substr($title, -5, 4); // extract year from the title
+            $title = substr($title, 0, -7); // remove year from the title
+            echo '<div class="movie-block">';
+            echo '<a href="movie.php?id=' . $movie_id . '">';
+            echo '<h3>' . $title . '</h3>';
+            echo '<p>' . $genres . '</p>';
+            echo '</a>';
+            echo '</div>';
+        }
+    } else {
+        echo "Error: " . mysqli_error($conn);
+    }
+}
+
 function get_movie_by_id($id) {
     global $conn;
     $query = "SELECT * FROM movies WHERE movieID = $id";

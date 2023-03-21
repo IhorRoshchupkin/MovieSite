@@ -20,7 +20,14 @@ if (empty($movie)) {
   </head>
   <body>
     <h1><?php echo $movie["title"]; ?></h1>
-    <p>Genres: <?php echo $movie["genres"]; ?></p>
+    <p>Genres:
+      <?php
+      $genres = explode("|", $movie["genres"]); // split genres into an array
+      foreach ($genres as $genre) {
+          echo "<a href='search.php?genre=$genre'>$genre</a> "; // create hyperlink for each genre
+      }
+      ?>
+    </p>
     <p>Year: <?php echo substr($movie["title"], -5, 4); ?></p>
   </body>
 </html>
