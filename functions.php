@@ -64,6 +64,42 @@ function insert_data($title, $year, $genres) {
       echo "Error: " . mysqli_error($conn);
     }
 }
+
+function get_all_movies() {
+    global $conn;
+    $query = "SELECT * FROM movies LIMIT 25";
+    $result = mysqli_query($conn, $query);
+    if ($result) {
+        while ($row = mysqli_fetch_assoc($result)) {
+            $movie_id = $row['movieID'];
+            $title = $row['title'];
+            $genres = $row['genres'];
+            $year = substr($title, -5, 4); // extract year from the title
+            $title = substr($title, 0, -7); // remove year from the title
+            echo '<div class="movie-block">';
+            echo '<a href="movie.php?id=' . $movie_id . '">';
+            echo '<h3>' . $title . '</h3>';
+            echo '<p>' . $genres . '</p>';
+            echo '</a>';
+            echo '</div>';
+        }
+    } else {
+        echo "Error: " . mysqli_error($conn);
+    }
+}
+
+function get_movie_by_id($id) {
+    global $conn;
+    $query = "SELECT * FROM movies WHERE movieID = $id";
+    $result = mysqli_query($conn, $query);
+    if ($result) {
+      $movie = mysqli_fetch_assoc($result);
+      return $movie;
+    } else {
+      return null;
+    }
+  }
+
 ?>
 
 
