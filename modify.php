@@ -4,6 +4,7 @@
 	<title>Modify Movie</title>
 </head>
 <body>
+<?php include("header.php") ?>
 	<h1>Modify Movie</h1>
 
 	<?php
@@ -41,5 +42,6 @@
 		<input type="text" name="genres" id="genres" value="<?php echo $genres; ?>" required><br>
 		<input type="submit" name="modify_movie" value="Modify Movie">
 	</form>
+  <?php include("footer.php") ?>
 </body>
 </html>

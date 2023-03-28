@@ -1,6 +1,6 @@
 <?php
 require_once("functions.php");
-
+include("header.php");
 if(isset($_POST["modify_movie"])) {
     $movie_id = $_POST["movie_id"];
     $title = $_POST["title"];
@@ -11,4 +11,5 @@ if(isset($_POST["modify_movie"])) {
 } else {
     echo "Error: Invalid form submission.";
 }
+include("footer.php");
 ?>

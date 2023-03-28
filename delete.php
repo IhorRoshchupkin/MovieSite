@@ -1,4 +1,5 @@
 <?php
+include("header.php");
 require_once("functions.php");
 
 if (isset($_POST["movie_id"])) {
@@ -13,4 +14,5 @@ if (isset($_POST["movie_id"])) {
 } else {
   echo "Invalid request.";
 }
+include("footer.php");
 ?>

@@ -1,4 +1,5 @@
 <?php
+include("header.php");
 // Проверяем, был ли отправлен POST-запрос
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Проверяем, что параметр "userID" был передан в запросе
@@ -21,4 +22,5 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         echo "Введите значение User ID";
     }
 }
+include("footer.php");
 ?>

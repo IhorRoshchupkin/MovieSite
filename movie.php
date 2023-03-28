@@ -19,6 +19,7 @@ if (empty($movie)) {
     <title><?php echo $movie["title"]; ?></title>
   </head>
   <body>
+  <?php include("header.php") ?>
     <h1><?php echo $movie["title"]; ?></h1>
     <p>Genres:
       <?php
@@ -64,4 +65,5 @@ if (empty($movie)) {
 
 
   </body>
+  <?php include("footer.php") ?>
 </html>
