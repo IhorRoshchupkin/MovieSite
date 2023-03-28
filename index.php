@@ -22,10 +22,11 @@
           <div class="bs5-grid-col col-8">
             <form action="login.php" method="post">
               <div class="mb-3 bs5-form-group">
-                <label for="username" class="form-label bs5-form-label">Username:</label>
-                <input type="text" id="username" name="username" class="form-control bs5-form-control">
+                <label for="userID" class="form-label bs5-form-label">User ID:</label>
+                <input type="text" id="userID" name="userID" class="form-control bs5-form-control">
               </div>
               <button type="submit" class="btn btn-primary">Login</button>
+              <button type="submit" formaction="logout.php" class="btn btn-secondary">Logout</button>
             </form>
           </div>
         </div>
@@ -33,6 +34,13 @@
   <div class="tab-pane active" id="view" role="tabpanel" aria-labelledby="view-tab">     
   <?php
     require_once("functions.php");
+    require_once("functions.php");
+    if (isset($_COOKIE["userID"])) {
+      $userID = $_COOKIE["userID"];
+      echo "User ID: " . $userID;
+    } else {
+      echo "User ID cookie not set";
+    }
     global $conn;
     $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
     $per_page = 25;
