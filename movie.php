@@ -7,7 +7,6 @@ if (isset($_GET["id"])) {
 }
 
 if (empty($movie)) {
-  // If no movie is found with the given ID, display an error message
   echo "Error: Movie not found.";
   exit();
 }
