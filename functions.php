@@ -156,12 +156,24 @@ function get_tags_by_movie_id($movie_id) {
     while ($row = mysqli_fetch_assoc($result)) {
       $tags[] = $row["tag"];
     }
-    $tags = array_unique($tags); // Remove duplicate tags
+    $tags = array_unique($tags); 
   } else {
     echo "Error: " . mysqli_error($conn);
   }
   
   return $tags;
+}
+
+function add_rating($movie_id, $user_id, $rating_value) {
+  global $conn;
+
+  $query = "INSERT INTO ratings (movieID, userID, rating) VALUES ('$movie_id', '$user_id', '$rating_value')";
+
+  $result = mysqli_query($conn, $query);
+
+  if (!$result) {
+    echo "Error: " . mysqli_error($conn);
+  }
 }
 
 function get_ratings_by_movie_id($movie_id) {
