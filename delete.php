@@ -11,6 +11,9 @@ if (isset($_POST["movie_id"])) {
   } else {
     echo "Error deleting movie.";
   }
+  
+  header('Location: index.php');
+  exit();
 } else {
   echo "Invalid request.";
 }

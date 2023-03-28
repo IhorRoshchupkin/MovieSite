@@ -12,27 +12,14 @@ if (empty($movie)) {
   exit();
 }
 ?>
-
-<!DOCTYPE html>
-<html>
-
-<head>
-  <title>
-    <?php echo $movie["title"]; ?>
-  </title>
-</head>
-
-<body>
   <?php include("header.php") ?>
   <h1>
     <?php echo $movie["title"]; ?>
   </h1>
   <p>Genres:
-    <?php
-    $genres = explode("|", $movie["genres"]); 
-    foreach ($genres as $genre) {
-      echo $genre; 
-    }
+      <?php
+      $genres = explode("|", $movie["genres"]); 
+      echo implode(",", $genres);
     ?>
   </p>
   <p>Year:

@@ -16,7 +16,10 @@
           </div>
         </div>
   <!-- Tab for viewing movies -->
-  <div class="tab-pane active" id="view" role="tabpanel" aria-labelledby="view-tab">     
+  
+
+ 
+  <div class="tab-pane active border" id="view" role="tabpanel" aria-labelledby="view-tab"> 
   <?php
     require_once("functions.php");
     if (isset($_COOKIE["userID"])) {
@@ -34,6 +37,7 @@
     get_all_movies($offset, $per_page);
     echo '<nav aria-label="Page navigation">';
     echo '<ul class="pagination">';
+    
     //pages 
     if ($page > 1) {
         echo '<li class="page-item"><a class="page-link" href="?page=1">&laquo;</a></li>';
@@ -52,8 +56,30 @@
     echo '</nav>';
     echo "Current page: " . $page;
 ?>
-     
-    </div>
+</div>
+
+<style>
+  Copy code
+.movie-block {
+  margin-bottom: 20px; /* отступ между блоками фильмов */
+}
+
+.movie-block a {
+  display: block;
+  padding: 10px;
+  border: 1px solid #ccc; /* рамка вокруг блока */
+  border-radius: 5px; /* скругление углов рамки */
+  box-shadow: 2px 2px 2px rgba(0,0,0,0.1); /* тень блока */
+  text-decoration: none;
+  color: #333;
+}
+
+.movie-block a:hover {
+  background-color: #f5f5f5; /* цвет фона при наведении */
+}
+</style>
+
+
 
   <!-- Tab for inserting new movies -->
   <div class="tab-pane" id="insert" role="tabpanel" aria-labelledby="insert-tab"> 

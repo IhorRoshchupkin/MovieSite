@@ -1,9 +1,3 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Modify Movie</title>
-</head>
-<body>
 <?php include("header.php") ?>
 	<h1>Modify Movie</h1>
 

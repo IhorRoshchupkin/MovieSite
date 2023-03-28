@@ -53,8 +53,12 @@ function get_all_movies($offset, $per_page)
       $title = substr($title, 0, -7); // remove year from the title
       echo '<div class="movie-block">';
       echo '<a href="movie.php?id=' . $movie_id . '">';
+      echo '<div class="card border-primary">';
+      echo '<div class="card-body">';
       echo '<h3>' . $title . '</h3>';
-      echo '<p>' . $genres . '</p>';
+      echo '<p>' . str_replace("|", ",", $genres) . '</p>';
+      echo '</div>';
+      echo '</div>';
       echo '</a>';
       echo '</div>';
     }
