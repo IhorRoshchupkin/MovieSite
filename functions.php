@@ -200,6 +200,19 @@ function add_tag_to_movie($user_id, $movie_id, $tag)
   }
 }
 
+function delete_tag($movie_id, $tag) {
+  global $conn;
+
+  $query = "DELETE FROM tags WHERE movieID=$movie_id AND tag='$tag'";
+
+  if (mysqli_query($conn, $query)) {
+    return true;
+  } else {
+    echo "Error deleting tag: " . mysqli_error($conn);
+    return false;
+  }
+}
+
 function get_ratings_by_movie_id($movie_id)
 {
   global $conn;

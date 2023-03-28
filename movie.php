@@ -52,7 +52,7 @@ if (empty($movie)) {
     <?php
     $tags = get_tags_by_movie_id($movie_id);
     foreach ($tags as $tag) {
-      echo "<span class='tag'>$tag <button class='delete-tag' data-tag='$tag'>x</button></span> ";
+      echo "<span class='tag'>$tag <form method='post' action='delete_tag.php'><input type='hidden' name='tag' value='$tag'><button type='submit'>x</button></form></span> ";
     }
     ?>
   </p>
