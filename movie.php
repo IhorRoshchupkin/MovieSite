@@ -64,8 +64,10 @@ if (empty($movie)) {
       $sum += $rating;
 
       $i += 1;
-    }
-    echo color_rating(round($sum / $i, 2));
+    }if(!$i == 0){
+      echo color_rating(round($sum / $i, 2));
+    }else{
+    echo color_rating(0);}
     ?>
   </p>
 
