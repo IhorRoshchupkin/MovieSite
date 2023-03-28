@@ -26,7 +26,7 @@
 				<button class="nav-link" id="insert-tab" data-bs-toggle="tab" data-bs-target="#insert" type="button" role="tab" aria-controls="profile" aria-selected="false">Insert new movie</button>
 			</li>
 			<li class="nav-item" role="presentation">
-				<a class="nav-link" id="login-tab" data-bs-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="false">Login</a>
+				<a class="nav-link" id="login-tab" data-bs-toggle="tab" href="index.php#login" role="tab" aria-controls="login" aria-selected="false">Login</a>
 			</li>
 		</ul>
 	</div>

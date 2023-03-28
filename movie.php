@@ -29,9 +29,9 @@ if (empty($movie)) {
   </h1>
   <p>Genres:
     <?php
-    $genres = explode("|", $movie["genres"]); // split genres into an array
+    $genres = explode("|", $movie["genres"]); 
     foreach ($genres as $genre) {
-      echo "<a href='search.php?genre=$genre'>$genre</a> "; // create hyperlink for each genre
+      echo $genre; 
     }
     ?>
   </p>
@@ -52,7 +52,8 @@ if (empty($movie)) {
     <?php
     $tags = get_tags_by_movie_id($movie_id);
     foreach ($tags as $tag) {
-      echo "<span class='tag'>$tag <form method='post' action='delete_tag.php'><input type='hidden' name='tag' value='$tag'><button type='submit'>x</button></form></span> ";
+      echo "<span class='tag'>$tag <form method='post' action='delete_tag.php'><input type='hidden' name='movie_id' value='$movie_id'><input type='hidden' name='tag' value='$tag'><button type='submit'>x</button></form></span> ";
+
     }
     ?>
   </p>
