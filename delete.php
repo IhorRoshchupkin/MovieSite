@@ -1,10 +1,16 @@
 <?php
-$id = $_GET['id'];
-
 require_once("functions.php");
 
-$query = "DELETE FROM employees WHERE id=$id";
-mysqli_query($conn, $query);
+if (isset($_POST["movie_id"])) {
+  $movie_id = $_POST["movie_id"];
+  $success = delete_movie_by_id($movie_id);
 
-header("Location: index.php");
+  if ($success) {
+    echo "Movie deleted successfully.";
+  } else {
+    echo "Error deleting movie.";
+  }
+} else {
+  echo "Invalid request.";
+}
 ?>

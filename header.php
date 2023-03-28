@@ -10,7 +10,7 @@
 				<button class="nav-link" id="insert-tab" data-bs-toggle="tab" data-bs-target="#insert">Insert new movie</button>
 			</li>
 			<li class="nav-item">
-				<button class="nav-link" id="search-tab" data-bs-toggle="tab" data-bs-target="#search">Search by genres</button>
+				<a class="nav-link" id="login-tab" data-bs-toggle="tab" href="#login" role="tab" aria-controls="login" aria-selected="false">Login</a>
 			</li>
 		</ul>
 	</div>

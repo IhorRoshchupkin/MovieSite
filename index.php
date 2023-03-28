@@ -18,73 +18,73 @@
     <!-- Tab panes -->
         <div class="tab-content">
 
-        <div class="tab-pane" id="search" role="tabpanel"
-                aria-labelledby="search-tab"> 
-                        <form method="GET" action="movies.php">
-                    <input type="text" name="genres" placeholder="Filter by genres" value="<?php echo isset($_GET['genres']) ? $_GET['genres'] : ''; ?>">
-                    <button type="submit">Filter</button>
-                </form>
-                <?php
-                    require_once("functions.php");
-                    $movies = isset($_GET['genres']) ? get_all_movies_by_genres($_GET['genres']) : get_all_movies();
-                    // use get_all_movies_by_genres() if genres is set in the query string
-                    foreach ($movies as $movie) {
-                    echo '<a href="movie.php?id=' . $movie["id"] . '">';
-                    echo '<div class="movie-block">';
-                    echo '<h2>' . $movie["title"] . '</h2>';
-                    echo '<p>' . $movie["genres"] . '</p>';
-                    echo '</div>';
-                    echo '</a>';
-                    }
-                ?>
-                        
-                </div>
-            </div>
+        <div class="tab-pane" id="login" role="tabpanel" aria-labelledby="login-tab">
+          <div class="bs5-grid-col col-8">
+            <form action="login.php" method="post">
+              <div class="mb-3 bs5-form-group">
+                <label for="username" class="form-label bs5-form-label">Username:</label>
+                <input type="text" id="username" name="username" class="form-control bs5-form-control">
+              </div>
+              <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+          </div>
+        </div>
+  <!-- Tab for viewing movies -->
+  <div class="tab-pane active" id="view" role="tabpanel" aria-labelledby="view-tab">     
+  <?php
+    require_once("functions.php");
+    global $conn;
+    $page = isset($_GET['page']) ? intval($_GET['page']) : 1;
+    $per_page = 25;
+    $offset = ($page - 1) * $per_page;
+    $total_movies = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM movies"));
+    $total_pages = ceil($total_movies / $per_page);
+    get_all_movies($offset, $per_page);
+    echo '<nav aria-label="Page navigation">';
+    echo '<ul class="pagination">';
+    //pages 
+    if ($page > 1) {
+        echo '<li class="page-item"><a class="page-link" href="?page=1">&laquo;</a></li>';
+    }
 
-            
+    for ($i = max(1, $page - 2); $i <= min($page + 2, $total_pages); $i++) {
+        $active = $i == $page ? ' active' : '';
+        echo '<li class="page-item' . $active . '"><a class="page-link" href="?page=' . $i . '">' . $i . '</a></li>';
+    }
 
-            <div class="tab-pane active" id="view" role="tabpanel" aria-labelledby="view-tab">
-        <?php
-            require_once("functions.php");
-            $movies = get_all_movies();
-            foreach ($movies as $movie) {
-            echo '<a href="movie.php?id=' . $movie["id"] . '">';
-            echo '<div class="movie-block">';
-            echo '<h2>' . $movie["title"] . '</h2>';
-            echo '<p>' . $movie["genres"] . '</p>';
-            echo '</div>';
-            echo '</a>';
-            }
-        ?>
+    if ($page < $total_pages) {
+        echo '<li class="page-item"><a class="page-link" href="?page=' . $total_pages . '">&raquo;</a></li>';
+    }
+
+    echo '</ul>';
+    echo '</nav>';
+    echo "Current page: " . $page;
+?>
+     
     </div>
 
-    get_all_movies_by_genres($genres)
-            
-            <div class="tab-pane" id="insert" role="tabpanel"
-                aria-labelledby="insert-tab"> 
-                <div class="bs5-grid-col col-8">
-                    <form action="insert.php" method="post">
-                        <div class="mb-3 bs5-form-group">
-                            <label for="title" class="form-label bs5-form-label">Title:</label>
-                            <input type="text" id="title" name="title" class="form-control bs5-form-control">
-                        </div>
-
-                        <div class="mb-3 bs5-form-group">
-                            <label for="year" class="form-label bs5-form-label">Year:</label>
-                            <input type="number" id="year" name="year" class="form-control bs5-form-control">
-                        </div>
-
-                        <div class="mb-3 bs5-form-group">
-                            <label for= "genres" class="form-label bs5-form-label">Genres:</label>
-                            <input type="text" id= "genres" name= "genres" class="form-control bs5-form-control">
-                        </div>
-
-                        <button type="submit" class="btn btn-primary">Add new movie</button>
-                    </form>
-                        
-                </div>
-            </div>
+  <!-- Tab for inserting new movies -->
+  <div class="tab-pane" id="insert" role="tabpanel" aria-labelledby="insert-tab"> 
+    <div class="bs5-grid-col col-8">
+      <form action="insert.php" method="post">
+        <div class="mb-3 bs5-form-group">
+          <label for="title" class="form-label bs5-form-label">Title:</label>
+          <input type="text" id="title" name="title" class="form-control bs5-form-control">
         </div>
+        <div class="mb-3 bs5-form-group">
+          <label for="year" class="form-label bs5-form-label">Year:</label>
+          <input type="number" id="year" name="year" class="form-control bs5-form-control">
+        </div>
+        <div class="mb-3 bs5-form-group">
+          <label for= "genres" class="form-label bs5-form-label">Genres:</label>
+          <input type="text" id= "genres" name= "genres" class="form-control bs5-form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Add new movie</button>
+      </form>
+    </div>
+  </div>
+</div>
+
     </main>
 <?php include("footer.php") ?>
 

@@ -3,7 +3,7 @@
     "type": "chrome",
     "request": "launch",
     "name": "Simple Config",
-    "url": "http://localhost/db_connection.php"
+    "url": "http://localhost"
     
     
     }

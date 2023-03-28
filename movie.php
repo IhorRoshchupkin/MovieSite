@@ -29,5 +29,39 @@ if (empty($movie)) {
       ?>
     </p>
     <p>Year: <?php echo substr($movie["title"], -5, 4); ?></p>
+
+    <form method="POST" action="delete.php">
+      <input type="hidden" name="movie_id" value="<?php echo $movie_id; ?>">
+      <input type="submit" name="delete_movie" value="Delete movie">
+    </form>
+    <form method="POST" action="modify.php">
+      <input type="hidden" name="id" value="<?php echo $movie_id; ?>">
+      <input type="submit" name="modify_movie" value="Modify movie">
+    </form>
+
+    <p>Tags:
+      <?php
+        $tags = get_tags_by_movie_id($movie_id);
+        foreach ($tags as $tag) {
+          echo "$tag</a> "; 
+        }
+      ?>
+    </p>
+
+    <p>Ratings:
+      <?php
+        $ratings = get_ratings_by_movie_id($movie_id);
+        $i = 0;
+        $sum = 0;
+        foreach ($ratings as $rating) {
+          $sum += $rating;
+          
+          $i +=1;
+        }
+        echo color_rating($sum/$i);
+      ?>
+    </p>
+
+
   </body>
 </html>
